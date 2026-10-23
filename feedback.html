@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0058)https://visionias.in/student/pt/feedback.php?test_id=17495 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Language" content="en-us">
+
+<title>FeedbackAre you satisfied with y</title>
+<script src="./jquery.min(2).js.download"></script>
+<style type="text/css">
+.style1 {
+	color: #008000;
+}
+.style3 {
+	color: #FF0000;
+}
+</style>
+<style></style></head>
+
+<body data-new-gr-c-s-check-loaded="14.1341.0" data-gr-ext-installed="" data-gr-agent-presence-bridge-connection-id="1792744971370-0.5157439436010605" data-new-gr-c-s-loaded="14.1341.0">
+
+<form method="post" action="https://visionias.in/student/pt/feedback_exec.php">
+	<fieldset name="Group1">
+	<legend>Feedback Form</legend>
+	<input name="Hidden1" type="hidden">
+	<input name="test_id" type="hidden" value="17495">
+	Was the paper difficult?
+	<input name="rating_d" id="rating_d5" type="radio" value="5"><span class="style1"><strong>5: Very Difficult </strong></span>
+	<input name="rating_d" id="rating_d4" type="radio" value="4"><span class="style1"><strong>4: Difficult</strong></span>
+	<input name="rating_d" id="rating_d3" type="radio" value="3" style="width: 20px" checked="checked"><strong>3: Moderate</strong>
+	<input name="rating_d" id="rating_d2" type="radio" value="2"><span class="style3"><strong>2: Easy </strong></span>
+	<input name="rating_d" id="rating_d1" type="radio" value="1"><span class="style1"><strong>1: Very Easy</strong></span> <br>
+
+	How do you find the quality of our paper?
+	<input name="rating_q" id="rating_q5" type="radio" value="5"><span class="style1"><strong>5: Excellent </strong></span>
+	<input name="rating_q" id="rating_q4" type="radio" value="4"><span class="style1"><strong>4: Good</strong></span>
+	<input name="rating_q" id="rating_q3" type="radio" value="3" style="width: 20px" checked="checked"><strong>3: Above Average</strong>
+	<input name="rating_q" id="rating_q2" type="radio" value="2"><span class="style3"><strong>2: Average</strong></span>
+	<input name="rating_q" id="rating_q1" type="radio" value="1"><span class="style1"><strong>1: Below Average</strong></span> <br>
+
+
+	<textarea name="feedback" id="feedbackData" style="width: 730px; height: 53px" onfocus="if (this.value=='Write your textual feedback/observation/errata etc. here') this.value='';">Write your textual feedback/observation/errata etc. here</textarea><br>
+	<input name="Submit1" type="submit" value="submit"><br>
+	</fieldset></form>
+
+
+<script>
+$(document).ready(function(){
+		var test_id  = $('input[name="test_id"]').val();
+		// $('#modalhidden').val(material_id);
+				$.ajax({
+				method: "POST",
+				url: "../getFeedback.php",
+				dataType: "json",
+				data: { from:"prelimsFeedback", test_id: test_id},
+				success: function(result){
+					if(result.status == '1' && result.data.rating_d !=0 && result.data.rating_q !=0){
+						$("#rating_q"+result.data.rating_q).prop("checked", true);
+						$("#rating_d"+result.data.rating_d).prop("checked", true);
+						$("#feedbackData").text(result.data.feedback);
+						$('#rating_q1').attr("disabled", 'disabled');
+						$('#rating_q2').attr("disabled", 'disabled');
+						$('#rating_q3').attr("disabled", 'disabled');
+						$('#rating_q4').attr("disabled", 'disabled');
+						$('#rating_q5').attr("disabled", 'disabled');
+						$('#rating_d1').attr("disabled", 'disabled');
+						$('#rating_d2').attr("disabled", 'disabled');
+						$('#rating_d3').attr("disabled", 'disabled');
+						$('#rating_d4').attr("disabled", 'disabled');
+						$('#rating_d5').attr("disabled", 'disabled');
+						$("#feedbackData").attr("disabled", 'disabled');
+						$("input[name='Submit1']").attr("disabled", 'disabled');
+				}
+			}
+			})
+});
+</script>
+
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true" style="visibility: visible !important;"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>
